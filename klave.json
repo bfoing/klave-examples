@@ -5,6 +5,11 @@
     "branch": "*",
     "applications": [
         {
+            "name": "Ledger Demo",
+            "version": "1.0.0",
+            "rootDir": "/apps/simple-query/happ"
+        },
+        {
             "name": "Secret Mixing",
             "version": "0.0.4",
             "rootDir": "/apps/secret-mixing/happ"
@@ -15,9 +20,9 @@
             "rootDir": "/apps/image-simd-faced/happ"
         },
         {
-            "name": "Service Info",
+            "name": "Chat Demo",
             "version": "1.0.0",
-            "rootDir": "/apps/simple-query/happ"
+            "rootDir": "/apps/chat-room/happ"
         }
     ]
 }
