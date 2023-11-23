@@ -65,3 +65,9 @@ export class ErrorMessage {
     success!: boolean;
     message!: string;
 }
+
+@serializable
+export class SmileyOutput {
+    success!: boolean;
+    message!: string;
+}

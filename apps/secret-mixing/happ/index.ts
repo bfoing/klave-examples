@@ -1,5 +1,5 @@
 import { Notifier, Ledger, Context, JSON } from '@klave/sdk';
-import { GetParticipantsOutput, Participant, ParticipantInfo, VoteInput, VoteOutput, OwnContribOutput, ResultInsufficientOutput, ResultOutput, HelloOutput, PingOutput, ErrorMessage } from './types';
+import { GetParticipantsOutput, Participant, ParticipantInfo, VoteInput, VoteOutput, OwnContribOutput, ResultInsufficientOutput, ResultOutput, HelloOutput, PingOutput, ErrorMessage, SmileyOutput } from './types';
 
 const participantsTableName = "secret_na_participants_v3";
 const noShowContribution = -999
@@ -82,8 +82,8 @@ export function getOwnContribution(): void {
     }
 
     const existingParticipants = JSON.parse<Participant[]>(list);
-    const which = existingParticipants.findIndex(function (p) { 
-        return p.id === Context.get('sender') 
+    const which = existingParticipants.findIndex(function (p) {
+        return p.id === Context.get('sender')
     });
     if (which === -1) {
         Notifier.sendJson<ErrorMessage>({
@@ -155,9 +155,9 @@ export function hello(): void {
         participantsTable.set('list', JSON.stringify<Participant[]>([newParticipant]));
     } else {
         const existingParticipants = JSON.parse<Participant[]>(list);
-        if (existingParticipants.findIndex(function (p) { 
+        if (existingParticipants.findIndex(function (p) {
             const clientId = Context.get('sender')
-            return p.id === clientId 
+            return p.id === clientId
         }) === -1) {
             existingParticipants.push(newParticipant);
             participantsTable.set('list', JSON.stringify<Participant[]>(existingParticipants));
@@ -178,5 +178,15 @@ export function ping(): void {
     Notifier.sendJson<PingOutput>({
         pong: true,
         you: clientId
+    });
+}
+
+/**
+ * @query
+ */
+export function sendMeASmiley(): void {
+    Notifier.sendJson<SmileyOutput>({
+        success: true,
+        message: "😎"
     });
 }
