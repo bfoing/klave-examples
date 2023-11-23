@@ -187,6 +187,6 @@ export function ping(): void {
 export function sendMeASmiley(): void {
     Notifier.sendJson<SmileyOutput>({
         success: true,
-        message: "😎"
+        message: "😎 !!"
     });
 }
